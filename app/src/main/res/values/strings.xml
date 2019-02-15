@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EssaiGyroscope</string>
+    <string name="note">Note :</string>
+    <string name="volume">Volume :</string>
+    <string name="x">X :</string>
+    <string name="y">Y :</string>
+    <string name="z">Z :</string>
+</resources>
