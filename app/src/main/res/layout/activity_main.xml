@@ -28,22 +28,22 @@
 
 
             <TextView
-                android:id="@+id/texteX"
+                android:id="@+id/texteAzimuth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/x" />
+                android:text="@string/azimuth" />
 
             <TextView
-                android:id="@+id/texteY"
+                android:id="@+id/textePitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/y" />
+                android:text="@string/pitch" />
 
             <TextView
-                android:id="@+id/texteZ"
+                android:id="@+id/texteRoll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/z" />
+                android:text="@string/roll" />
 
         <Button
             android:id="@+id/boutonGo"

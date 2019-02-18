@@ -1,4 +1,4 @@
-package com.devandroid.essaigyroscope;
+package com.devandroid.essaiorientation;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -14,12 +14,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     SensorManager sensorManager;
     Sensor magnetic, accelerometer;
-    float x, y, z;
+
     float[] acceleromterVector = new float[3];
     float[] magneticVector = new float[3];
     float[] resultMatrix = new float[9];
     float[] values = new float[3];
-    TextView texteX, texteY, texteZ;
+
+    float azimuth, pitch, roll;
+
+    TextView texteAzimuth, textePitch, texteRoll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager.registerListener((SensorEventListener) this, magnetic, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
-        texteX = (TextView) findViewById(R.id.texteX);
-        texteY = (TextView) findViewById(R.id.texteY);
-        texteZ = (TextView) findViewById(R.id.texteZ);
+        texteAzimuth = (TextView) findViewById(R.id.texteAzimuth);
+        textePitch = (TextView) findViewById(R.id.textePitch);
+        texteRoll = (TextView) findViewById(R.id.texteRoll);
     }
 
 
@@ -60,17 +63,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // Demander au SensorManager le vecteur d'orientation associé (values)
         SensorManager.getOrientation(resultMatrix, values);
         // l'azimuth
-        x = (float) Math.toDegrees(values[0]);
+        azimuth = (float) Math.toDegrees(values[0]);
         // le pitch
-        y = (float) Math.toDegrees(values[1]);
+        pitch = (float) Math.toDegrees(values[1]);
         // le roll
-        z = (float) Math.toDegrees(values[2]);
+        roll = (float) Math.toDegrees(values[2]);
 
-        texteX.setText("X : " + Float.toString((float) ((int) (x * 1000)) / 1000));
-        texteY.setText("Y : " + Float.toString((float) ((int) (y * 1000)) / 1000));
-        texteZ.setText("Z : " + Float.toString((float) ((int) (z * 1000)) / 1000));
+        texteAzimuth.setText("Azimuth : " + Float.toString((float) ((int) (azimuth * 1000)) / 1000));
+        textePitch.setText("Pitch : " + Float.toString((float) ((int) (pitch * 1000)) / 1000));
+        texteRoll.setText("Roll : " + Float.toString((float) ((int) (roll * 1000)) / 1000));
     }
 
+
+    // Stopper les mesures
     @Override
     protected void onPause() {
         super.onPause();
@@ -78,6 +83,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager.unregisterListener(this, accelerometer);
     }
 
+
+    // Reprendre les mesures
+    @Override
+    protected void onResume(){
+        super.onResume();
+        sensorManager.registerListener((SensorEventListener) this, magnetic, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
 }
 
 

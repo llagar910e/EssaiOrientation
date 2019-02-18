@@ -1,4 +1,4 @@
-package com.devandroid.essaigyroscope;
+package com.devandroid.essaiorientation;
 
 import org.junit.Test;
 

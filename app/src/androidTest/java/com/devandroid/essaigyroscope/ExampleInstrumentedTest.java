@@ -1,4 +1,4 @@
-package com.devandroid.essaigyroscope;
+package com.devandroid.essaiorientation;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.devandroid.essaigyroscope", appContext.getPackageName());
+        assertEquals("com.devandroid.essaiorientation", appContext.getPackageName());
     }
 }
